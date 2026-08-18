@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/auth.css' %}"
+    >
+
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <div class="auth-card">
+
+            <h1>Create Account</h1>
+
+            <p class="subtitle">
+                Create your Product Management account
+            </p>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+                
+
+                <!-- Username -->
+
+                <div class="form-group">
+
+                    {{ form.username.label_tag }}
+
+                    {{ form.username }}
+
+                    {% if form.username.errors %}
+
+                        <div class="field-error">
+                            {{ form.username.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    {{ form.password1.label_tag }}
+
+                    {{ form.password1 }}
+
+                    {% if form.password1.errors %}
+
+                        <div class="field-error">
+                            {{ form.password1.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    {{ form.password2.label_tag }}
+
+                    {{ form.password2 }}
+
+                    {% if form.password2.errors %}
+
+                        <div class="field-error">
+                            {{ form.password2.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Non-field errors -->
+
+                {% if form.non_field_errors %}
+
+                    <div class="error-message">
+
+                        {{ form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="bottom-text">
+
+                Already have an account?
+
+                <a href="#">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

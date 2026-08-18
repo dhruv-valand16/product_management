@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>E-Commerce</title>
+</head>
+<body>
+   <main class="products-page">
+        <div class="page-header">
+
+            <div>
+                <h1>Our Products</h1>
+                <p>Explore our latest products</p>
+                
+            </div>
+
+            <div class="header-buttons">
+
+                <a href="{% url 'product_create' %}" class="add-product-button">
+                    + Add Product
+                </a>
+
+                <a href="{% url 'export_products' %}?search={{search | urlencode}}" class="export-button">
+                    ↓ Export Data
+                </a>
+
+            </div>
+
+        </div>
+
+        <form method="GET" class="search-form">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search products..."
+                value="{{ search|default:'' }}"
+            >
+
+            <button type="submit">
+                Search
+            </button>
+        
+        </form>
+
+        <div class="product-grid">
+            {% for product in products %}
+            <article class="product-card">
+                <div class="product-image">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" > 
+                    {% else %} 
+                    <div class="no-image"> No Image </div> 
+                    {% endif %} 
+                </div>
+                <div class="product-content">
+                    <span class="product-category"> {{ product.category.name }} </span>
+                    <h2>{{ product.name }}</h2>
+                    <p class="product-description"> {{ product.description }} </p>
+                    <div class="product-bottom">
+                        <span class="product-price"> ₹{{ product.price }} </span>
+                        <a href="{% url 'product_detail' product.id %}" class="view-button">
+                            View Product
+                        </a>
+                        
+                    </div>
+                </div>
+            </article> 
+            {% empty %}
+            <div class="empty-products"> 
+                <h2>No products available</h2> 
+                <p>There are currently no products to display.</p> 
+            </div> 
+            {% endfor %} 
+        </div>
+    </main>
+</body>
+</html>

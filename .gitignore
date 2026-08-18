@@ -1,0 +1,19 @@
+# Virtual Environment
+myvenv/
+
+# Environment variables
+.env
+.env.*
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django
+db.sqlite3
+
+# Uploaded media
+media/
+
+# macOS
+.DS_Store

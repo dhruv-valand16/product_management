@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Delete {{ product.name }}</title>
+
+    <link rel="stylesheet" href="{% static 'css/product_delete.css' %}" >
+
+</head>
+
+<body>
+
+    <main class="delete-page">
+
+        <div class="delete-card">
+
+            <h1>Delete Product?</h1>
+
+            <p>
+                Are you sure you want to delete
+                <strong>{{ product.name }}</strong>?
+            </p>
+
+            {% if product.image %}
+
+                <img
+                    src="{{ product.image.url }}"
+                    alt="{{ product.name }}"
+                >
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="delete-button"
+                >
+                    Yes, Delete
+                </button>
+
+                <a
+                    href="{% url 'product_detail' product.id %}"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

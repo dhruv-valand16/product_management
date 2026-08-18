@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ page_title }}</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/product_form.css' %}"
+    >
+</head>
+
+<body>
+
+    <main class="product-form-page">
+
+        <div class="form-header">
+
+            <h1>{{ page_title }}</h1>
+
+            <p>
+                Fill in the product details below
+            </p>
+
+        </div>
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            class="product-form"
+        >
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="save-button"
+                >
+                    {{ button_text }}
+                </button>
+
+
+                <a
+                    href="{% url 'product_list' %}"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>
