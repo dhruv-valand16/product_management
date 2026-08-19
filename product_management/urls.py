@@ -28,5 +28,5 @@ urlpatterns = [
     path("accounts/",include(account_url))
 ]
 
-#for static media purpose images and all 
+#for static media purpose images and all iles images/js
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT )
